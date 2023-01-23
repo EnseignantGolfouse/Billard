@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://BillBoard.gd" type="Script" id=1]
+[ext_resource path="res://assets/themes/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Largeur" type="HSplitContainer" parent="Buttons"]
+margin_right = 182.0
+margin_bottom = 34.0
+split_offset = 4
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Buttons/Largeur"]
+margin_top = 5.0
+margin_right = 94.0
+margin_bottom = 29.0
+text = "Largeur :"
+
+[node name="Input" type="LineEdit" parent="Buttons/Largeur"]
+margin_left = 94.0
+margin_right = 182.0
+margin_bottom = 34.0
+align = 2
+max_length = 2
+
+[node name="Hauteur" type="HSplitContainer" parent="Buttons"]
+margin_top = 38.0
+margin_right = 182.0
+margin_bottom = 72.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Buttons/Hauteur"]
+margin_top = 5.0
+margin_right = 100.0
+margin_bottom = 29.0
+text = "Hauteur : "
+
+[node name="Input" type="LineEdit" parent="Buttons/Hauteur"]
+margin_left = 100.0
+margin_right = 182.0
+margin_bottom = 34.0
+align = 2
+max_length = 2
+
+[node name="DessineButton" type="Button" parent="Buttons"]
+margin_top = 76.0
+margin_right = 182.0
+margin_bottom = 106.0
+text = "Dessine"
+
+[node name="EffaceButton" type="Button" parent="Buttons"]
+margin_top = 110.0
+margin_right = 182.0
+margin_bottom = 140.0
+text = "Efface"
+
+[node name="Deplie" type="HSplitContainer" parent="Buttons"]
+margin_top = 144.0
+margin_right = 182.0
+margin_bottom = 176.0
+
+[node name="Label" type="Label" parent="Buttons/Deplie"]
+margin_top = 4.0
+margin_right = 83.0
+margin_bottom = 28.0
+text = "Déplie : "
+
+[node name="CheckBox" type="CheckBox" parent="Buttons/Deplie"]
+margin_left = 95.0
+margin_right = 182.0
+margin_bottom = 32.0
+align = 1
+icon_align = 1
+
+[node name="Speed" type="HSplitContainer" parent="."]
+margin_left = 204.0
+margin_top = 1.0
+margin_right = 648.0
+margin_bottom = 35.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Speed"]
+margin_top = 5.0
+margin_right = 180.0
+margin_bottom = 29.0
+text = "Vitesse de dessin:"
+
+[node name="Slider" type="HSlider" parent="Speed"]
+margin_left = 192.0
+margin_right = 444.0
+margin_bottom = 16.0
+min_value = 50.0
+max_value = 2000.0
+step = 10.0
+value = 200.0
+
+[node name="BillBoard" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[connection signal="text_changed" from="Buttons/Largeur/Input" to="." method="_on_Width_text_changed"]
+[connection signal="text_changed" from="Buttons/Hauteur/Input" to="." method="_on_Height_text_changed"]
+[connection signal="pressed" from="Buttons/DessineButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Buttons/EffaceButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="toggled" from="Buttons/Deplie/CheckBox" to="." method="_on_Deplie_toggled"]
+[connection signal="value_changed" from="Speed/Slider" to="." method="_on_Speed_value_changed"]
